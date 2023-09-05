@@ -18,11 +18,12 @@ public class User {
 	private String lokacija;
 	private String roles;
 	private String username;
+	private int br_blagajne;
 	
 	
 	
 	public User(Long id, String ime, String prezime, String email, String password, int dob, String lokacija,
-                String roles, String username) {
+                String roles, String username, int br_blagajne) {
 		super();
 		this.id = id;
 		this.ime = ime;
@@ -33,6 +34,7 @@ public class User {
 		this.lokacija = lokacija;
 		this.roles = roles;
 		this.username = username;
+		this.br_blagajne= br_blagajne;
 	}
 	
 
@@ -40,7 +42,14 @@ public class User {
 		super();
 	}
 
-	
+	public int getBrBlagajne() {
+		return br_blagajne;
+	}
+
+	public void setBrBlagajne(int br_blagajne) {
+		this.br_blagajne = br_blagajne;
+	}
+
 	public Long getId() {
 		return id;
 	}

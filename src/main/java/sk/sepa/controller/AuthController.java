@@ -54,6 +54,7 @@ public class AuthController {
         newUser.setLokacija(insertUserRequest.getLokacijaRegister());
         newUser.setUsername(insertUserRequest.getUsernameRegister());
         newUser.setRoles("Guest");
+        newUser.setBrBlagajne(0);
 
         userRepository.save(newUser);
         return ResponseEntity.ok(newUser);
