@@ -1,4 +1,7 @@
 package sk.sepa.repository;
 
-public interface GrupaNalogaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import sk.sepa.object.grupaNaloga.GrupaNaloga;
+
+public interface GrupaNalogaRepository extends JpaRepository<GrupaNaloga, Long> {
 }

@@ -1,14 +1,18 @@
 package sk.sepa.controller;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.sepa.object.banka.Banka;
+import sk.sepa.object.grupaNaloga.GrupaNaloga;
 import sk.sepa.object.naknada.Naknada;
 import sk.sepa.object.naknada.NaknadaDto;
 import sk.sepa.object.nalog.Nalog;
 import sk.sepa.object.nalog.NalogDto;
+import sk.sepa.object.nalog.NalogDtoAndUserIdRequest;
 import sk.sepa.object.racun.Racun;
 import sk.sepa.object.unos.RacunInfo;
 import sk.sepa.object.unos.RacunInfoDto;
@@ -17,6 +21,10 @@ import sk.sepa.object.vrstaOpisaPlacanja.VrstaOpisaPlacanja;
 import sk.sepa.service.*;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -34,6 +42,9 @@ public class UnosNalogaController {
     private BankaService bankaService;
     @Autowired
     private NalogService nalogService;
+
+    @Autowired
+    private GrupaNalogaService grupaNalogaService;
 
     @PostMapping("/getRacunInfo")
     public RacunInfo getRacunInfo(@RequestBody RacunInfoDto racunInfoDto){
@@ -90,13 +101,41 @@ public class UnosNalogaController {
     }
 
     @PostMapping("/insertNalog")
-    public ResponseEntity<Nalog> insertNalog(@RequestBody NalogDto nalogDto, Long userId) {
+    public GrupaNaloga insertNalog(@RequestBody NalogDtoAndUserIdRequest request) {
         try {
-            Nalog newNalog = new Nalog();
+            NalogDto nalogDto = request.getNalogDto();
+            Long userId = request.getUserId();
+            Boolean isUplata = request.getUplata();
+            Boolean isIsplata = request.getIsplata();
+            GrupaNaloga grupaNaloga = request.getGrupaNaloga();
 
-            newNalog.setId_grupe_naloga(null);
+            if(grupaNaloga == null){
+                grupaNaloga = new GrupaNaloga();
+                grupaNaloga.setId_user(userId);
+                grupaNaloga.setDate(getCurrentDate());
+                grupaNaloga.setSts_grupe("Aktivan");
+
+                grupaNalogaService.insertGrupaNaloga(grupaNaloga);
+            }
+
+
+            Nalog newNalog = new Nalog();
+            Banka banka = new Banka();
+
+            if(isUplata){
+                banka = bankaService.getBankaByVbdi(nalogDto.getIbanPlat());
+                newNalog.setTip_naloga("Uplata");
+
+            }else if(isIsplata){
+                banka = bankaService.getBankaByVbdi(nalogDto.getIbanPrim());
+                newNalog.setTip_naloga("Isplata");
+            }
+
+
+
+            newNalog.setId_grupe_naloga(grupaNaloga.getId());
             newNalog.setId_user(userId);
-            newNalog.setId_banke(null);
+            newNalog.setId_banke(banka.getId());
 
             newNalog.setIznos(new BigDecimal(nalogDto.getIznos()));
             newNalog.setIme_plat(nalogDto.getImePlat());
@@ -123,13 +162,21 @@ public class UnosNalogaController {
             newNalog.setBr_blagajne(nalogDto.getBrBlagajne());
             newNalog.setVr_naknade(nalogDto.getVrNaknade());
             newNalog.setIznos_naknade(nalogDto.getIznosNaknade());
+            newNalog.setValuta_placanja("EUR");
+            newNalog.setSts_naloga("Aktivan");
 
-            Nalog savedNalog = nalogService.insertNalog(newNalog);
+            nalogService.insertNalog(newNalog);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedNalog);
+            return grupaNaloga;
         } catch (Exception e) {
-            // Handle any exceptions or validation errors here
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return null;
         }
+    }
+
+    @GetMapping("/current-date")
+    public String getCurrentDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date currentDate = new Date();
+        return dateFormat.format(currentDate);
     }
 }

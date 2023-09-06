@@ -41,8 +41,10 @@ public class Nalog {
     int br_blagajne;
     int vr_naknade;
     BigDecimal iznos_naknade;
+    String sts_naloga;
 
-    public Nalog(Long id, Long id_grupe_naloga, Long id_user, Long id_banke, String tip_naloga, String valuta_placanja, BigDecimal iznos, String ime_plat, String adresa_plat, String mjesto_plat, String ime_prim, String adresa_prim, String mjesto_prim, int sif_opis_plac, String sif_namjene, Date dat_izvrsenja, Date dat_podnosenja, String drzava_plat, String kontrolni_broj_plat, String iban_plat, String model_plat, String pnb_plat, String drzava_prim, String kontrolni_broj_prim, String iban_prim, String model_prim, String pnb_prim, String opis_plac, int br_blagajne, int vr_naknade, BigDecimal iznos_naknade) {
+
+    public Nalog(Long id, Long id_grupe_naloga, Long id_user, Long id_banke, String tip_naloga, String valuta_placanja, BigDecimal iznos, String ime_plat, String adresa_plat, String mjesto_plat, String ime_prim, String adresa_prim, String mjesto_prim, int sif_opis_plac, String sif_namjene, Date dat_izvrsenja, Date dat_podnosenja, String drzava_plat, String kontrolni_broj_plat, String iban_plat, String model_plat, String pnb_plat, String drzava_prim, String kontrolni_broj_prim, String iban_prim, String model_prim, String pnb_prim, String opis_plac, int br_blagajne, int vr_naknade, BigDecimal iznos_naknade, String sts_naloga) {
         this.id = id;
         this.id_grupe_naloga = id_grupe_naloga;
         this.id_user = id_user;
@@ -74,10 +76,19 @@ public class Nalog {
         this.br_blagajne = br_blagajne;
         this.vr_naknade = vr_naknade;
         this.iznos_naknade = iznos_naknade;
+        this.sts_naloga = sts_naloga;
     }
 
     public Nalog() {
         super();
+    }
+
+    public String getSts_naloga() {
+        return sts_naloga;
+    }
+
+    public void setSts_naloga(String sts_naloga) {
+        this.sts_naloga = sts_naloga;
     }
 
     public Long getId() {
