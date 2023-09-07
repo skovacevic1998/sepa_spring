@@ -30,4 +30,8 @@ public class UserService {
 
 		return userRepository.save(existingUser);
 	}
+
+	public Long getIdByUsername(String username){
+		return userRepository.getIdByUsername(username);
+	}
 }

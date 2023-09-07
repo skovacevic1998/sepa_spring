@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import sk.sepa.object.grupaNaloga.GrupaNaloga;
 import sk.sepa.repository.GrupaNalogaRepository;
 
+import java.util.List;
+
 @Service
 public class GrupaNalogaService {
     @Autowired
@@ -17,5 +19,8 @@ public class GrupaNalogaService {
 
     public GrupaNaloga insertGrupaNaloga(GrupaNaloga grupaNaloga){
         return grupaNalogaRepository.save(grupaNaloga);
+    }
+    public List<GrupaNaloga> getGrupaByUserId(Long userId){
+        return grupaNalogaRepository.getGrupaNalogaByUserId(userId);
     }
 }

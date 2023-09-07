@@ -6,6 +6,8 @@ import sk.sepa.object.nalog.Nalog;
 import sk.sepa.object.nalog.NalogDto;
 import sk.sepa.repository.NalogRepository;
 
+import java.util.List;
+
 @Service
 public class NalogService {
     @Autowired
@@ -17,5 +19,8 @@ public class NalogService {
 
     public Nalog insertNalog(Nalog nalog){
         return nalogRepository.save(nalog);
+    }
+    public List<Nalog> getNalogListByUserIdAndGrupaNaloga(Long userId, Long idGrupeNaloga){
+        return nalogRepository.getNalogListByUserIdAndGrupaNaloga(userId, idGrupeNaloga);
     }
 }
