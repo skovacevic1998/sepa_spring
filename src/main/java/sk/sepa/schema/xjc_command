@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Java\jdk1.8.0_202\bin\xjc" -d D:\code\spring\sepa_spring\src\main\java -p sk.sepa.schema.generated D:\code\spring\sepa_spring\src\main\java\sk\sepa\schema\pain.001.001.03.xsd
