@@ -10,9 +10,7 @@ import sk.sepa.object.banka.Banka;
 import sk.sepa.object.grupaNaloga.GrupaNaloga;
 import sk.sepa.object.naknada.Naknada;
 import sk.sepa.object.naknada.NaknadaDto;
-import sk.sepa.object.nalog.Nalog;
-import sk.sepa.object.nalog.NalogDto;
-import sk.sepa.object.nalog.NalogDtoAndUserIdRequest;
+import sk.sepa.object.nalog.*;
 import sk.sepa.object.racun.Racun;
 import sk.sepa.object.unos.RacunInfo;
 import sk.sepa.object.unos.RacunInfoDto;
@@ -24,6 +22,7 @@ import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -171,6 +170,34 @@ public class UnosNalogaController {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    @PostMapping("/getNalogList")
+    public List<NalogRedux> nalogReduxList(@RequestBody NalogReduxDto nalogReduxDto){
+        Long uid = nalogReduxDto.getUserId();
+        Long idGrupeNaloga = nalogReduxDto.getIdGrupeNaloga();
+
+        List<NalogRedux> nalogReduxList = new ArrayList<>();
+        List<Nalog> nalogList = nalogService.getNalogListByUserIdAndGrupaNaloga(uid,idGrupeNaloga);
+
+        for(Nalog nalog: nalogList){
+            NalogRedux nalogRedux = new NalogRedux();
+
+            nalogRedux.setId(nalog.getId());
+            nalogRedux.setBrRac(nalog.getDrzava_prim()+nalog.getKontrolni_broj_prim()+nalog.getIban_prim());
+            nalogRedux.setIznUpl(nalog.getIznos());
+            nalogRedux.setIznIspl(new BigDecimal(0));
+            nalogRedux.setDate(getCurrentDate());
+            nalogRedux.setPnb(nalog.getPnb_prim());
+            nalogRedux.setNaknada(new BigDecimal(0));
+            nalogRedux.setSifOpisPlac(nalog.getSif_opis_plac());
+            nalogRedux.setSifNamjene(nalog.getSif_namjene());
+            nalogRedux.setStatus(nalog.getSts_naloga());
+
+            nalogReduxList.add(nalogRedux);
+        }
+
+        return nalogReduxList;
     }
 
     @GetMapping("/current-date")

@@ -14,6 +14,7 @@ import sk.sepa.schema.generated.Document; // Import your JAXB-generated Document
 import sk.sepa.schema.generated.PaymentInstructionInformation3;
 import sk.sepa.service.BankaService;
 import sk.sepa.service.GrupaNalogaService;
+import sk.sepa.service.NalogService;
 
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
@@ -39,14 +40,17 @@ public class UcitavanjeDatotekeController {
     @Autowired
     private BankaService bankaService;
 
+    @Autowired
+    private NalogService nalogService;
+
     @PostMapping("/sepaValidation")
-    public ResponseEntity<?> validateXml(@RequestParam("file") MultipartFile file,
+    public GrupaNaloga validateXml(@RequestParam("file") MultipartFile file,
                                          @RequestParam("userId") Long userId,
                                          @RequestParam("brBlagajne") int brBlagajne) {
         try {
 
             Long uid= userId;
-            String xsdFilePath = "C:/Users/sinis/Desktop/sepa_spring/src/main/java/sk/sepa/schema/pain.001.001.03.xsd";
+            String xsdFilePath = "D:\\code\\spring\\sepa_spring\\src\\main\\java\\sk\\sepa\\schema\\pain.001.001.03.xsd";
 
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = schemaFactory.newSchema(new File(xsdFilePath));
@@ -128,6 +132,8 @@ public class UcitavanjeDatotekeController {
 
                     if(banka!=null){
                         nalog.setId_banke(banka.getId());
+                    }else{
+                        nalog.setId_banke(new Long(99));
                     }
 
                     nalog.setModel_prim("99");
@@ -161,20 +167,22 @@ public class UcitavanjeDatotekeController {
                 nalog.setBr_blagajne(brBlagajne);
                 nalog.setId_grupe_naloga(grupaNaloga.getId());
                 nalog.setId_user(uid);
+                nalog.setSts_naloga("Aktivan");
 
+                nalogService.insertNalog(nalog);
             }
 
+            return grupaNaloga;
 
-            return ResponseEntity.ok("XML is valid according to the schema: " + grupaNaloga);
         } catch (SAXException e) {
             // Validation failed
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("XML validation failed: " + e.getMessage());
+            return null;
         } catch (IOException e) {
             // File I/O error
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to process XML: " + e.getMessage());
+            return null;
         } catch (JAXBException e) {
             // JAXB unmarshalling error
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to unmarshal XML: " + e.getMessage());
+            return null;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
