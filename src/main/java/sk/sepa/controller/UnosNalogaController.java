@@ -1,9 +1,6 @@
 package sk.sepa.controller;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.sepa.object.banka.Banka;
@@ -20,12 +17,9 @@ import sk.sepa.service.*;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/api")
@@ -68,7 +62,6 @@ public class UnosNalogaController {
             return null;
         }
 
-        // Return a 200 OK response with the list of VrstaNamjene objects
         return vrstaNamjene;
     }
 
@@ -76,11 +69,9 @@ public class UnosNalogaController {
     public ResponseEntity<List<VrstaOpisaPlacanja>> getSifOpisPlacanja() {
         List<VrstaOpisaPlacanja> vrstaOpisaPlacanja = vrstaOpisaPlacanjaService.getSifOpisPlacanja();
         if (vrstaOpisaPlacanja.isEmpty()) {
-            // Return a 404 Not Found response if the list is empty
             return ResponseEntity.notFound().build();
         }
 
-        // Return a 200 OK response with the list of VrstaNamjene objects
         return ResponseEntity.ok(vrstaOpisaPlacanja);
     }
 

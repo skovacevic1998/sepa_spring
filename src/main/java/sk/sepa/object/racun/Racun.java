@@ -9,17 +9,17 @@ import java.util.Date;
 public class Racun {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String drzava_rac;
-    String kontrolni_broj_rac;
-    String iban_rac;
-    String ime_rac;
-    String adresa_rac;
-    String mjesto_rac;
-    Boolean sts_rac;
-    Date date;
-    String vbdi_rac;
-    Long id_banke;
+    private Long id;
+    private String drzava_rac;
+    private String kontrolni_broj_rac;
+    private String iban_rac;
+    private String ime_rac;
+    private String adresa_rac;
+    private String mjesto_rac;
+    private Boolean sts_rac;
+    private Date date;
+    private String vbdi_rac;
+    private Long id_banke;
 
     public Racun(Long id, String drzava_rac, String kontrolni_broj_rac, String iban_rac, String ime_rac, String adresa_rac, String mjesto_rac, Boolean sts_rac, Date date, String vbdi_rac, Long id_banke) {
         this.id = id;

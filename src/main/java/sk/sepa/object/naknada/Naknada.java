@@ -3,8 +3,8 @@ package sk.sepa.object.naknada;
 import java.math.BigDecimal;
 
 public class Naknada {
-    int vrstaNaknade;
-    BigDecimal iznosNaknade;
+    private int vrstaNaknade;
+    private BigDecimal iznosNaknade;
 
     public Naknada(int vrstaNaknade, BigDecimal iznosNaknade) {
         this.vrstaNaknade = vrstaNaknade;

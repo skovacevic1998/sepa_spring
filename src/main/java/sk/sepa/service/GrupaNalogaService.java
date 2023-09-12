@@ -16,7 +16,6 @@ public class GrupaNalogaService {
     public GrupaNalogaService(GrupaNalogaRepository grupaNalogaRepository){
         this.grupaNalogaRepository = grupaNalogaRepository;
     }
-
     public GrupaNaloga insertGrupaNaloga(GrupaNaloga grupaNaloga){
         return grupaNalogaRepository.save(grupaNaloga);
     }

@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import sk.sepa.object.vrstaNamjene.VrstaNamjene;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface VrstaNamjeneRepository extends JpaRepository<VrstaNamjene, Long> {
     @Query("SELECT v FROM VrstaNamjene v")

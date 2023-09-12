@@ -1,8 +1,6 @@
 package sk.sepa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
@@ -10,7 +8,7 @@ import sk.sepa.object.banka.Banka;
 import sk.sepa.object.grupaNaloga.GrupaNaloga;
 import sk.sepa.object.nalog.Nalog;
 import sk.sepa.schema.generated.CreditTransferTransactionInformation10;
-import sk.sepa.schema.generated.Document; // Import your JAXB-generated Document class
+import sk.sepa.schema.generated.Document;
 import sk.sepa.schema.generated.PaymentInstructionInformation3;
 import sk.sepa.service.BankaService;
 import sk.sepa.service.GrupaNalogaService;
@@ -21,10 +19,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
-import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;

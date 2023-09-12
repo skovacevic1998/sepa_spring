@@ -1,6 +1,7 @@
 package sk.sepa.object.vrstaNamjene;
 
 import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
@@ -8,10 +9,10 @@ import java.util.Date;
 public class VrstaNamjene {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String sif_namjene;
-    String opis;
-    Date date;
+    private Long id;
+    private String sif_namjene;
+    private String opis;
+    private Date date;
 
     public VrstaNamjene(Long id, String sif_namjene, String opis, Date date) {
         this.id = id;

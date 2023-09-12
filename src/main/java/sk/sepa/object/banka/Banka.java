@@ -10,13 +10,13 @@ import java.util.Date;
 public class Banka {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String ime_banke;
-    String vbdi_banke;
-    Boolean sts_banke;
-    Date date;
-    BigDecimal iznos_naknade;
-    int vrsta_naknade;
+    private Long id;
+    private String ime_banke;
+    private String vbdi_banke;
+    private Boolean sts_banke;
+    private Date date;
+    private BigDecimal iznos_naknade;
+    private int vrsta_naknade;
 
     public Banka(Long id, String ime_banke, String vbdi_banke, Boolean sts_banke, Date date, BigDecimal iznos_naknade, int vrsta_naknade) {
         this.id = id;

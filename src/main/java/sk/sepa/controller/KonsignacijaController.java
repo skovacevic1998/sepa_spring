@@ -6,9 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sk.sepa.object.grupaNaloga.GrupaNaloga;
 import sk.sepa.object.konsignacija.KonsignacijaDto;
-import sk.sepa.object.nalog.Nalog;
 import sk.sepa.repository.GrupaNalogaRepository;
 import sk.sepa.repository.NalogRepository;
 

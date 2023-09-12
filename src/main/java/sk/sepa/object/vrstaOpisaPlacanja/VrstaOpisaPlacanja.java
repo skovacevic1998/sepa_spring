@@ -9,10 +9,10 @@ import java.util.Date;
 public class VrstaOpisaPlacanja {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    int sif_opis_plac;
-    String opis;
-    Date date;
+    private Long id;
+    private int sif_opis_plac;
+    private String opis;
+    private Date date;
 
     public VrstaOpisaPlacanja(Long id, int sif_opis_plac, String opis, Date date) {
         this.id = id;

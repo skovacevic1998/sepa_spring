@@ -3,16 +3,16 @@ package sk.sepa.object.pregled;
 import java.math.BigDecimal;
 
 public class GrNal {
-    String racPrim;
-    String infoRacPrim;
-    String racPlat;
-    String infoRacPlat;
-    int sifOpisPlac;
-    String opisPlac;
-    String sifNamjene;
-    BigDecimal iznosNal;
-    BigDecimal iznosNaknade;
-    String stsNaloga;
+    private String racPrim;
+    private String infoRacPrim;
+    private String racPlat;
+    private String infoRacPlat;
+    private int sifOpisPlac;
+    private String opisPlac;
+    private String sifNamjene;
+    private BigDecimal iznosNal;
+    private BigDecimal iznosNaknade;
+    private String stsNaloga;
 
     public GrNal(String racPrim, String infoRacPrim, String racPlat, String infoRacPlat, int sifOpisPlac, String opisPlac, String sifNamjene, BigDecimal iznosNal, BigDecimal iznosNaknade, String stsNaloga) {
         this.racPrim = racPrim;

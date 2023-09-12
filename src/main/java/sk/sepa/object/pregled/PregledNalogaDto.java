@@ -1,7 +1,7 @@
 package sk.sepa.object.pregled;
 
 public class PregledNalogaDto {
-    String username;
+    private String username;
 
     public PregledNalogaDto(String username) {
         this.username = username;

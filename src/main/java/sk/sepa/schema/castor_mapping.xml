@@ -1,7 +1,0 @@
-<mapping>
-    <class name="sk.sepa.schema.generated.Document">
-        <map-to xml="Document"/>
-        <namespace uri="urn:iso:std:iso:20022:tech:xsd:pain.001.001.03"/>
-        <!-- Define element-to-field mappings here -->
-    </class>
-</mapping>

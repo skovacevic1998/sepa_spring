@@ -6,7 +6,6 @@ import sk.sepa.object.vrstaNamjene.VrstaNamjene;
 import sk.sepa.repository.VrstaNamjeneRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VrstaNamjeneService {
@@ -18,8 +17,7 @@ public class VrstaNamjeneService {
     }
 
     public List<VrstaNamjene> getSifNamjene() {
-        List<VrstaNamjene> optionalVrstaNamjene = vrstaNamjeneRepository.getSifNamjene();
-        return optionalVrstaNamjene; // Return null if not found
+        return vrstaNamjeneRepository.getSifNamjene(); // Return null if not found
     }
 }
 

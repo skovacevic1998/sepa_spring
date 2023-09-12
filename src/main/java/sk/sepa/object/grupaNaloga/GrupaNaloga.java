@@ -2,17 +2,15 @@ package sk.sepa.object.grupaNaloga;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
-
 @Entity
 @Table(name="grupaNaloga")
 public class GrupaNaloga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    Long id_user;
-    String sts_grupe;
-    String date;
+    private Long id;
+    private Long id_user;
+    private String sts_grupe;
+    private String date;
 
     public GrupaNaloga(Long id, Long id_user, String sts_grupe, String date) {
         this.id = id;

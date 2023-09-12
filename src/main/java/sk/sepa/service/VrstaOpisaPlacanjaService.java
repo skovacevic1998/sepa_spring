@@ -17,7 +17,6 @@ public class VrstaOpisaPlacanjaService {
     }
 
     public List<VrstaOpisaPlacanja> getSifOpisPlacanja(){
-      List<VrstaOpisaPlacanja> vrstaOpisaPlacanjasList = vrstaOpisaPlacanjaRepository.getSifOpisPlacanja();
-      return vrstaOpisaPlacanjasList;
+      return vrstaOpisaPlacanjaRepository.getSifOpisPlacanja();
     }
 }

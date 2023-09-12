@@ -7,10 +7,10 @@ import jakarta.persistence.*;
 public class RacunInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String ime_rac;
-    String adresa_rac;
-    String mjesto_rac;
+    private Long id;
+    private String ime_rac;
+    private String adresa_rac;
+    private String mjesto_rac;
 
     public RacunInfo(Long id, String ime_rac, String adresa_rac, String mjesto_rac) {
         this.id = id;

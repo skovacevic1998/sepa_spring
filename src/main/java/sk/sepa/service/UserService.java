@@ -1,6 +1,5 @@
 package sk.sepa.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sk.sepa.object.user.User;

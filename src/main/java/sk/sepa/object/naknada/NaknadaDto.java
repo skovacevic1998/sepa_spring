@@ -2,11 +2,9 @@ package sk.sepa.object.naknada;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.math.BigDecimal;
-
 public class NaknadaDto {
     @JsonProperty("ibanRac")
-    String ibanRac;
+    private String ibanRac;
 
     public NaknadaDto(String ibanRac) {
         this.ibanRac = ibanRac;

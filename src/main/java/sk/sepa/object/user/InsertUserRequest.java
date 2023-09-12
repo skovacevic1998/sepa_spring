@@ -1,13 +1,13 @@
 package sk.sepa.object.user;
 
 public class InsertUserRequest {
-    String imeRegister;
-    String prezimeRegister;
-    String usernameRegister;
-    String lokacijaRegister;
-    String emailRegister;
-    String passwordRegister;
-    String rePasswordRegister;
+    private String imeRegister;
+    private String prezimeRegister;
+    private String usernameRegister;
+    private String lokacijaRegister;
+    private String emailRegister;
+    private String passwordRegister;
+    private String rePasswordRegister;
 
     public String getImeRegister() {
         return imeRegister;
