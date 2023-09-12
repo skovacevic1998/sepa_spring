@@ -48,7 +48,7 @@ public class UcitavanjeDatotekeController {
         try {
 
             Long uid= userId;
-            String xsdFilePath = "D:\\code\\spring\\sepa_spring\\src\\main\\java\\sk\\sepa\\schema\\pain.001.001.03.xsd";
+            String xsdFilePath = "src\\main\\java\\sk\\sepa\\schema\\pain.001.001.03.xsd";
 
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Schema schema = schemaFactory.newSchema(new File(xsdFilePath));
@@ -79,7 +79,6 @@ public class UcitavanjeDatotekeController {
 
                 nalog.setTip_naloga("Datoteka");
                 nalog.setIme_plat(pmtInf.getDbtr().getNm());
-
 
                 if(pmtInf.getDbtr().getPstlAdr() != null){
                     for(String adrline: pmtInf.getDbtr().getPstlAdr().getAdrLine()){
@@ -116,14 +115,14 @@ public class UcitavanjeDatotekeController {
 
                     String drzavaPrim = cdtTrfTxInf.getCdtrAcct().getId().getIBAN().substring(0,2);
                     String kontrBrPrim = cdtTrfTxInf.getCdtrAcct().getId().getIBAN().substring(2,4);
-                    String pnbPrim = cdtTrfTxInf.getCdtrAcct().getId().getIBAN().substring(4);
+                    String ibanPrim = cdtTrfTxInf.getCdtrAcct().getId().getIBAN().substring(4);
 
                     nalog.setDrzava_prim(drzavaPrim);
                     nalog.setKontrolni_broj_prim(kontrBrPrim);
-                    nalog.setPnb_prim(pnbPrim);
+                    nalog.setIban_prim(ibanPrim);
 
                     if("HR".equals(drzavaPrim)){
-                        banka = bankaService.getBankaByVbdi(pnbPrim);
+                        banka = bankaService.getBankaByVbdi(ibanPrim);
                     }else{
                         banka = null;
                     }

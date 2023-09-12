@@ -25,7 +25,7 @@ public class KonsignacijaController {
     @PostMapping("/updateStatus")
     public ResponseEntity<?> updateStatus(@RequestBody KonsignacijaDto konsignacijaDto) {
         Long idGrupe = konsignacijaDto.getId();
-        String newStatus = "Izvršen";
+        String newStatus = konsignacijaDto.getStatusGrupeNaloga();
 
         grupaNalogaRepository.updateStatusByGrupeNalogaId(idGrupe, newStatus);
 
