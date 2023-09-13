@@ -125,7 +125,11 @@ public class UnosNalogaController {
 
             newNalog.setId_grupe_naloga(grupaNaloga.getId());
             newNalog.setId_user(userId);
-            newNalog.setId_banke(banka.getId());
+            if(banka==null){
+                newNalog.setId_banke(99L);
+            }else{
+                newNalog.setId_banke(banka.getId());
+            }
 
             newNalog.setIznos(new BigDecimal(nalogDto.getIznos()));
             newNalog.setIme_plat(nalogDto.getImePlat());
