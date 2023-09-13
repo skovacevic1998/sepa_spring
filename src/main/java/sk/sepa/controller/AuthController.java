@@ -70,8 +70,11 @@ public class AuthController {
         return ResponseEntity.ok(updatedUser);
     }
 
-    private boolean passwordMatches(String providedPassword, String storedPasswordHash) {
-        return providedPassword.equals(storedPasswordHash);
+    @GetMapping("/checkUsername")
+    public ResponseEntity<Boolean> checkUsernameExists(@RequestParam("username") String username) {
+        User user = userRepository.findByUsername(username);
+        boolean usernameExists = user != null;
+        return ResponseEntity.ok(usernameExists);
     }
 }
 
