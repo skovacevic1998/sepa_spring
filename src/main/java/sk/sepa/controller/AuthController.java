@@ -36,11 +36,11 @@ public class AuthController {
         User userDb = userRepository.findByEmail(insertUserRequest.getEmailRegister());
 
         if (userDb != null && userDb.getEmail().equals(insertUserRequest.getEmailRegister())) {
-            return ResponseEntity.badRequest().body("Email already exists");
+            return ResponseEntity.badRequest().body("Email adresa postoji");
         }
 
         if(!insertUserRequest.getPasswordRegister().equals(insertUserRequest.getRePasswordRegister())){
-            return ResponseEntity.badRequest().body("Password don't match");
+            return ResponseEntity.badRequest().body("Lozinke se ne podudaraju");
         }
 
         User newUser = new User();
@@ -75,6 +75,11 @@ public class AuthController {
         User user = userRepository.findByUsername(username);
         boolean usernameExists = user != null;
         return ResponseEntity.ok(usernameExists);
+    }
+
+    @GetMapping("/checkEmail")
+    public User checkUserByEmail(@RequestParam("email") String email){
+        return userRepository.findByEmail(email);
     }
 }
 
