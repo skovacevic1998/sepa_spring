@@ -130,7 +130,7 @@ public class UcitavanjeDatotekeController {
                     if(banka!=null){
                         nalog.setId_banke(banka.getId());
                     }else{
-                        nalog.setId_banke(new Long(99));
+                        nalog.setId_banke(99L);
                     }
 
                     nalog.setModel_prim("99");
